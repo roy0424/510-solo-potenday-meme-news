@@ -51,20 +51,26 @@ export async function POST(request: NextRequest) {
     const keywords = await getImageKeywords(summary)
     const gifUrls = await searchGifs(keywords, 3)
 
-    // Save to database
-    const savedMeme = await prisma.meme.create({
-      data: {
-        newsUrl: body.type === 'url' ? body.url : undefined,
-        newsTitle: body.type === 'url' ? newsData?.title : undefined,
-        newsContent: content.substring(0, 5000), // Limit content size
-        summary,
-        memeText,
-        emojis: JSON.stringify(emojis),
-        imageUrl: baseImageUrl,
-        imageData: baseImageUrl.startsWith('data:') ? baseImageUrl : undefined,
-        gifUrls: gifUrls.length > 0 ? JSON.stringify(gifUrls) : undefined,
-      },
-    })
+    // Save to database (optional, skip if database is not available)
+    let savedMemeId: string | undefined
+    try {
+      const savedMeme = await prisma.meme.create({
+        data: {
+          newsUrl: body.type === 'url' ? body.url : undefined,
+          newsTitle: body.type === 'url' ? newsData?.title : undefined,
+          newsContent: content.substring(0, 5000), // Limit content size
+          summary,
+          memeText,
+          emojis: JSON.stringify(emojis),
+          imageUrl: baseImageUrl,
+          imageData: baseImageUrl.startsWith('data:') ? baseImageUrl : undefined,
+          gifUrls: gifUrls.length > 0 ? JSON.stringify(gifUrls) : undefined,
+        },
+      })
+      savedMemeId = savedMeme.id
+    } catch (dbError) {
+      console.warn('Database save failed (continuing without saving):', dbError)
+    }
 
     const result: MemeResult = {
       summary,
@@ -74,7 +80,7 @@ export async function POST(request: NextRequest) {
       gifUrls: gifUrls.length > 0 ? gifUrls : undefined,
     }
 
-    return NextResponse.json({ ...result, id: savedMeme.id })
+    return NextResponse.json({ ...result, id: savedMemeId })
   } catch (error: any) {
     console.error('Error generating meme:', error)
 
