@@ -1,8 +1,8 @@
 -- CreateTable
 CREATE TABLE "Meme" (
-    "id" TEXT NOT NULL PRIMARY KEY,
-    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" DATETIME NOT NULL,
+    "id" TEXT NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
     "newsUrl" TEXT,
     "newsTitle" TEXT,
     "newsContent" TEXT,
@@ -12,5 +12,7 @@ CREATE TABLE "Meme" (
     "imageUrl" TEXT NOT NULL,
     "imageData" TEXT,
     "gifUrls" TEXT,
-    "views" INTEGER NOT NULL DEFAULT 0
+    "views" INTEGER NOT NULL DEFAULT 0,
+
+    CONSTRAINT "Meme_pkey" PRIMARY KEY ("id")
 );
