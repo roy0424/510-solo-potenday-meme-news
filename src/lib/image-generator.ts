@@ -25,7 +25,7 @@ class DalleProvider implements ImageProvider {
         // gpt-image-1 supports up to 4096x4096, but using 1024x1024 for consistency
       })
 
-      const imageUrl = response.data[0].url
+      const imageUrl = response.data?.[0]?.url
       if (!imageUrl) {
         throw new Error('No image URL returned from GPT-Image-1')
       }
