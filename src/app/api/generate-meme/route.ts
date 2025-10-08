@@ -3,7 +3,7 @@ import { crawlNaverNews } from '@/lib/crawler'
 import { summarizeNews, generateMemeText, generateImagePrompt, getImageKeywords } from '@/lib/openai'
 import { generateMemeImage } from '@/lib/image-generator'
 import { searchGifs } from '@/lib/giphy'
-import { GenerateMemeRequest, MemeResult } from '@/types'
+import { GenerateMemeRequest, MemeResult, NewsData } from '@/types'
 import { PrismaClient } from '@prisma/client'
 
 const prisma = new PrismaClient()
@@ -13,7 +13,7 @@ export async function POST(request: NextRequest) {
     const body: GenerateMemeRequest = await request.json()
 
     let content = ''
-    let newsData: { title: string; content: string; url: string } | undefined
+    let newsData: NewsData | undefined
 
     // Step 1: Get news content
     if (body.type === 'url') {

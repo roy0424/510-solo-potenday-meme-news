@@ -1,7 +1,7 @@
 export interface NewsData {
   title: string
   content: string
-  url?: string
+  url: string
 }
 
 export interface MemeResult {
