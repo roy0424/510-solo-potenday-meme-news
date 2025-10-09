@@ -5,7 +5,7 @@ import Link from 'next/link'
 export default function Home() {
   return (
     <main className="min-h-screen bg-gradient-to-br from-purple-50 to-blue-50">
-      <div className="max-w-4xl mx-auto min-h-screen px-4 md:px-0">
+      <div className="max-w-5xl mx-auto min-h-screen px-4 md:px-0">
         <header className="sticky top-0 z-10 bg-white/80 backdrop-blur-lg shadow-sm p-4 md:p-6 mb-4 md:mb-8">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
             <div>

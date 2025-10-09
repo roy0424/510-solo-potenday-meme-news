@@ -85,7 +85,7 @@ export default function MemeCard({ result }: MemeCardProps) {
   }
 
   return (
-    <div className="bg-white rounded-2xl shadow-2xl p-6 md:p-10 mt-6 md:mt-10 animate-fade-in">
+    <div className="bg-white rounded-2xl shadow-2xl p-8 md:p-12 mt-6 md:mt-10 animate-fade-in">
       {/* AI Generated Image with GIF Overlays - 메인 */}
       {result.imageUrl && (
         <div className="mb-6 md:mb-8 relative">
@@ -126,9 +126,9 @@ export default function MemeCard({ result }: MemeCardProps) {
       )}
 
       {/* Summary - 서브 */}
-      <div className="mb-6 md:mb-8 p-4 md:p-5 bg-gradient-to-r from-yellow-50 to-orange-50 rounded-xl border-l-4 border-orange-400">
-        <h3 className="text-xs md:text-sm font-semibold text-orange-600 mb-2 md:mb-3 uppercase tracking-wide">📰 뉴스 요약</h3>
-        <p className="text-sm md:text-lg font-semibold text-gray-800 leading-relaxed">{result.summary}</p>
+      <div className="mb-6 md:mb-8 p-5 md:p-6 bg-gradient-to-r from-yellow-50 to-orange-50 rounded-xl border-l-4 border-orange-400">
+        <h3 className="text-sm md:text-base font-semibold text-orange-600 mb-2 md:mb-3 uppercase tracking-wide">📰 뉴스 요약</h3>
+        <p className="text-base md:text-xl font-semibold text-gray-800 leading-relaxed">{result.summary}</p>
       </div>
 
       {/* Action Buttons */}
