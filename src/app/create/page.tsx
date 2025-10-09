@@ -4,7 +4,7 @@ import Link from 'next/link'
 export default function CreatePage() {
   return (
     <main className="min-h-screen bg-gradient-to-br from-purple-50 to-blue-50 p-4 md:p-8">
-      <div className="max-w-5xl mx-auto">
+      <div className="max-w-3xl mx-auto">
         <div className="mb-6 md:mb-8">
           <Link
             href="/"
