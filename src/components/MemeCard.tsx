@@ -23,8 +23,9 @@ export default function MemeCard({ result }: MemeCardProps) {
     if (result.gifUrls && result.gifUrls.length > 0) {
       // Check if mobile or desktop
       const isMobile = typeof window !== 'undefined' && window.innerWidth < 768
-      const minSize = isMobile ? 50 : 84
-      const maxSize = isMobile ? 90 : 140
+      // 30% reduced: 50*0.7=35, 90*0.7=63, 84*0.7=59, 140*0.7=98
+      const minSize = isMobile ? 35 : 59
+      const maxSize = isMobile ? 63 : 98
 
       const positions = result.gifUrls.map((url, index) => ({
         url,
@@ -85,13 +86,7 @@ export default function MemeCard({ result }: MemeCardProps) {
 
   return (
     <div className="bg-white rounded-2xl shadow-2xl p-6 md:p-10 mt-6 md:mt-10 animate-fade-in">
-      {/* Summary - 상단에 크게 표시 */}
-      <div className="mb-6 md:mb-10 p-5 md:p-8 bg-gradient-to-r from-yellow-50 to-orange-50 rounded-xl border-l-4 border-orange-400">
-        <h3 className="text-sm md:text-base font-semibold text-orange-600 mb-3 md:mb-4 uppercase tracking-wide">📰 뉴스 요약</h3>
-        <p className="text-lg md:text-3xl font-bold text-gray-900 leading-relaxed">{result.summary}</p>
-      </div>
-
-      {/* AI Generated Image with GIF Overlays */}
+      {/* AI Generated Image with GIF Overlays - 메인 */}
       {result.imageUrl && (
         <div className="mb-6 md:mb-8 relative">
           <div className="relative w-full rounded-2xl overflow-hidden shadow-2xl">
@@ -129,6 +124,12 @@ export default function MemeCard({ result }: MemeCardProps) {
           </div>
         </div>
       )}
+
+      {/* Summary - 서브 */}
+      <div className="mb-6 md:mb-8 p-4 md:p-5 bg-gradient-to-r from-yellow-50 to-orange-50 rounded-xl border-l-4 border-orange-400">
+        <h3 className="text-xs md:text-sm font-semibold text-orange-600 mb-2 md:mb-3 uppercase tracking-wide">📰 뉴스 요약</h3>
+        <p className="text-sm md:text-lg font-semibold text-gray-800 leading-relaxed">{result.summary}</p>
+      </div>
 
       {/* Action Buttons */}
       <div className="flex gap-3 md:gap-5">
