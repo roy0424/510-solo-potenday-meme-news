@@ -8,7 +8,7 @@ const openai = new OpenAI({
 
 export async function summarizeNews(content: string): Promise<string> {
   const model = genAI.getGenerativeModel({
-    model: 'gemini-1.5-flash-latest',
+    model: 'gemini-2.5-flash',
     generationConfig: {
       temperature: 0.7,
     }
@@ -27,7 +27,7 @@ ${content}`
 
 export async function generateMemeText(summary: string): Promise<{ text: string; emojis: string[] }> {
   const model = genAI.getGenerativeModel({
-    model: 'gemini-1.5-flash-latest',
+    model: 'gemini-2.5-flash',
     generationConfig: {
       temperature: 0.9,
       responseMimeType: 'application/json',
@@ -54,7 +54,7 @@ JSON 형식으로 응답해주세요: { "text": "밈 문구", "emojis": ["😂",
 
 export async function generateImagePrompt(newsContent: string): Promise<string> {
   const model = genAI.getGenerativeModel({
-    model: 'gemini-1.5-flash-latest',
+    model: 'gemini-2.5-flash',
     generationConfig: {
       temperature: 0.7,
     }
@@ -83,7 +83,7 @@ export async function generateImagePrompt(newsContent: string): Promise<string> 
 
 export async function getImageKeywords(summary: string): Promise<string[]> {
   const model = genAI.getGenerativeModel({
-    model: 'gemini-1.5-flash-latest',
+    model: 'gemini-2.5-flash',
     generationConfig: {
       temperature: 0.5,
       responseMimeType: 'application/json',
