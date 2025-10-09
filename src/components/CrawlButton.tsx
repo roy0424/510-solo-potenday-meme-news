@@ -74,7 +74,7 @@ export default function CrawlButton() {
 
       {/* Category Dropdown */}
       {showCategoryMenu && !loading && (
-        <div className="absolute top-full mt-2 right-0 bg-white rounded-lg shadow-xl border border-gray-200 overflow-hidden z-20 min-w-[150px]">
+        <div className="absolute top-full mt-2 left-0 md:left-auto md:right-0 bg-white rounded-lg shadow-xl border border-gray-200 overflow-hidden z-20 min-w-[150px]">
           {categories.map((category) => (
             <button
               key={category.value}
