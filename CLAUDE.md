@@ -37,15 +37,21 @@ Create a `.env.local` file with:
 ```
 OPENAI_API_KEY=your_openai_api_key_here
 GIPHY_API_KEY=your_giphy_api_key_here
+GOOGLE_GEMINI_API_KEY=your_gemini_api_key_here
 ```
 
-Both API keys are required for full functionality.
+All API keys are required for full functionality:
+- **GOOGLE_GEMINI_API_KEY**: For text generation (summarization, meme text, prompts)
+- **OPENAI_API_KEY**: For image generation (DALL-E 3)
+- **GIPHY_API_KEY**: For GIF search
 
 ## Architecture
 
 ### Tech Stack
 - **Frontend**: Next.js 14 (App Router), React, TypeScript, Tailwind CSS
-- **AI Services**: OpenAI API (GPT-4 for text generation, DALL-E 3 for images)
+- **AI Services**:
+  - Google Gemini API (Gemini 1.5 Flash for text generation)
+  - OpenAI API (DALL-E 3 for images)
 - **Crawling**: Cheerio + Axios
 - **GIF Search**: Giphy API
 - **Image Processing**: html2canvas, Sharp
@@ -92,12 +98,13 @@ src/
 - Falls back to multiple selector patterns for compatibility
 - Includes User-Agent header to avoid blocking
 
-**OpenAI Integration** (src/lib/openai.ts)
-- `summarizeNews()`: One-sentence Korean summary
-- `generateMemeText()`: Meme-style text + emoji recommendations (JSON response)
-- `generateMemeImage()`: DALL-E 3 image generation with meme aesthetics
-- `getImageKeywords()`: Keyword extraction for GIF search
-- All use GPT-4 with Korean language prompts optimized for meme culture
+**AI Integration** (src/lib/openai.ts)
+- `summarizeNews()`: One-sentence Korean summary (Gemini 1.5 Flash)
+- `generateMemeText()`: Meme-style text + emoji recommendations (Gemini 1.5 Flash, JSON response)
+- `generateImagePrompt()`: Generate DALL-E prompts (Gemini 1.5 Flash)
+- `getImageKeywords()`: Keyword extraction for GIF search (Gemini 1.5 Flash)
+- Text generation uses Google Gemini with Korean language prompts optimized for meme culture
+- Image generation uses DALL-E 3 (src/lib/image-generator.ts)
 
 **NewsInput Component** (src/components/NewsInput.tsx)
 - Dual-mode input: URL or text
