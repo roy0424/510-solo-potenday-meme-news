@@ -46,9 +46,15 @@ export default function MemeCard({ result }: MemeCardProps) {
       generateRandomPositions()
     }, 6000)
 
-    // Regenerate on window resize
+    // Regenerate on window resize (only when width changes, not height)
+    let previousWidth = window.innerWidth
     const handleResize = () => {
-      generateRandomPositions()
+      const currentWidth = window.innerWidth
+      // Only regenerate if width actually changed (ignore height changes from mobile scrolling)
+      if (currentWidth !== previousWidth) {
+        previousWidth = currentWidth
+        generateRandomPositions()
+      }
     }
     window.addEventListener('resize', handleResize)
 
