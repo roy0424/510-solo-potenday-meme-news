@@ -83,25 +83,25 @@ export default function MemeFeed() {
   }, [hasMore, loading, loadMemes, initialLoaded])
 
   return (
-    <div className="p-8 space-y-8 min-h-screen">
+    <div className="p-4 md:p-8 space-y-4 md:space-y-8 min-h-screen">
       {memes.length === 0 && !loading && (
-        <div className="space-y-8">
+        <div className="space-y-4 md:space-y-8">
           {/* Empty state with skeleton cards */}
           {[...Array(5)].map((_, i) => (
-            <div key={i} className="bg-white rounded-2xl shadow-lg p-8 animate-pulse">
-              <div className="h-8 bg-gray-200 rounded w-3/4 mb-4"></div>
-              <div className="h-4 bg-gray-200 rounded w-1/2 mb-6"></div>
-              <div className="aspect-video bg-gray-200 rounded-xl mb-6"></div>
+            <div key={i} className="bg-white rounded-2xl shadow-lg p-4 md:p-8 animate-pulse">
+              <div className="h-6 md:h-8 bg-gray-200 rounded w-3/4 mb-3 md:mb-4"></div>
+              <div className="h-3 md:h-4 bg-gray-200 rounded w-1/2 mb-4 md:mb-6"></div>
+              <div className="aspect-video bg-gray-200 rounded-xl mb-4 md:mb-6"></div>
               <div className="space-y-2">
-                <div className="h-4 bg-gray-200 rounded w-full"></div>
-                <div className="h-4 bg-gray-200 rounded w-5/6"></div>
-                <div className="h-4 bg-gray-200 rounded w-4/6"></div>
+                <div className="h-3 md:h-4 bg-gray-200 rounded w-full"></div>
+                <div className="h-3 md:h-4 bg-gray-200 rounded w-5/6"></div>
+                <div className="h-3 md:h-4 bg-gray-200 rounded w-4/6"></div>
               </div>
             </div>
           ))}
-          <div className="text-center py-12">
-            <p className="text-2xl text-gray-500 mb-4">아직 밈이 없습니다</p>
-            <p className="text-gray-400">위의 '뉴스 크롤링' 버튼을 눌러 뉴스를 크롤링하거나<br/>'밈 만들기' 버튼으로 직접 만들어보세요!</p>
+          <div className="text-center py-8 md:py-12">
+            <p className="text-lg md:text-2xl text-gray-500 mb-3 md:mb-4">아직 밈이 없습니다</p>
+            <p className="text-sm md:text-base text-gray-400">위의 '뉴스 크롤링' 버튼을 눌러 뉴스를 크롤링하거나<br/>'밈 만들기' 버튼으로 직접 만들어보세요!</p>
           </div>
         </div>
       )}

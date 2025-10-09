@@ -105,37 +105,37 @@ export default function NewsInput() {
   }
 
   return (
-    <div className="bg-white rounded-2xl shadow-xl p-8">
-      <div className="flex gap-4 mb-6">
+    <div className="bg-white rounded-2xl shadow-xl p-4 md:p-8">
+      <div className="flex gap-2 md:gap-4 mb-4 md:mb-6">
         <button
           onClick={() => setInputMethod('url')}
-          className={`flex-1 py-3 px-6 rounded-lg font-semibold transition-all ${
+          className={`flex-1 py-2 md:py-3 px-3 md:px-6 rounded-lg text-sm md:text-base font-semibold transition-all ${
             inputMethod === 'url'
               ? 'bg-purple-600 text-white shadow-lg'
               : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
           }`}
         >
-          URL 입력
+          URL
         </button>
         <button
           onClick={() => setInputMethod('text')}
-          className={`flex-1 py-3 px-6 rounded-lg font-semibold transition-all ${
+          className={`flex-1 py-2 md:py-3 px-3 md:px-6 rounded-lg text-sm md:text-base font-semibold transition-all ${
             inputMethod === 'text'
               ? 'bg-purple-600 text-white shadow-lg'
               : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
           }`}
         >
-          텍스트 입력
+          텍스트
         </button>
         <button
           onClick={() => setInputMethod('crawl')}
-          className={`flex-1 py-3 px-6 rounded-lg font-semibold transition-all ${
+          className={`flex-1 py-2 md:py-3 px-3 md:px-6 rounded-lg text-sm md:text-base font-semibold transition-all ${
             inputMethod === 'crawl'
               ? 'bg-purple-600 text-white shadow-lg'
               : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
           }`}
         >
-          뉴스 크롤링
+          크롤링
         </button>
       </div>
 
@@ -162,7 +162,7 @@ export default function NewsInput() {
           <button
             onClick={handleCrawlNews}
             disabled={crawling}
-            className="w-full bg-gradient-to-r from-purple-600 to-blue-600 text-white py-4 px-6 rounded-lg font-semibold text-lg hover:from-purple-700 hover:to-blue-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-lg mb-6"
+            className="w-full bg-gradient-to-r from-purple-600 to-blue-600 text-white py-3 md:py-4 px-4 md:px-6 rounded-lg font-semibold text-base md:text-lg hover:from-purple-700 hover:to-blue-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-lg mb-4 md:mb-6"
           >
             {crawling ? '뉴스 크롤링 중...' : '📰 뉴스 가져오기'}
           </button>
@@ -220,7 +220,7 @@ export default function NewsInput() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-gradient-to-r from-purple-600 to-blue-600 text-white py-4 px-6 rounded-lg font-semibold text-lg hover:from-purple-700 hover:to-blue-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
+            className="w-full bg-gradient-to-r from-purple-600 to-blue-600 text-white py-3 md:py-4 px-4 md:px-6 rounded-lg font-semibold text-base md:text-lg hover:from-purple-700 hover:to-blue-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
           >
             {loading ? '밈 생성 중...' : '🎨 밈 만들기'}
           </button>

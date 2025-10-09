@@ -70,11 +70,11 @@ export default function MemeCard({ result }: MemeCardProps) {
   }
 
   return (
-    <div className="bg-white rounded-2xl shadow-2xl p-8 mt-8 animate-fade-in">
+    <div className="bg-white rounded-2xl shadow-2xl p-4 md:p-8 mt-4 md:mt-8 animate-fade-in">
       {/* Summary - 상단에 크게 표시 */}
-      <div className="mb-8 p-6 bg-gradient-to-r from-yellow-50 to-orange-50 rounded-xl border-l-4 border-orange-400">
-        <h3 className="text-sm font-semibold text-orange-600 mb-3 uppercase tracking-wide">📰 뉴스 요약</h3>
-        <p className="text-2xl font-bold text-gray-900 leading-relaxed">{result.summary}</p>
+      <div className="mb-4 md:mb-8 p-4 md:p-6 bg-gradient-to-r from-yellow-50 to-orange-50 rounded-xl border-l-4 border-orange-400">
+        <h3 className="text-xs md:text-sm font-semibold text-orange-600 mb-2 md:mb-3 uppercase tracking-wide">📰 뉴스 요약</h3>
+        <p className="text-base md:text-2xl font-bold text-gray-900 leading-relaxed">{result.summary}</p>
       </div>
 
       {/* AI Generated Image with GIF Overlays */}
@@ -117,17 +117,17 @@ export default function MemeCard({ result }: MemeCardProps) {
       )}
 
       {/* Action Buttons */}
-      <div className="flex gap-4">
+      <div className="flex gap-2 md:gap-4">
         <button
           onClick={handleShare}
-          className="flex-1 bg-gradient-to-r from-green-500 to-emerald-500 text-white py-3 px-6 rounded-lg font-semibold hover:from-green-600 hover:to-emerald-600 transition-all"
+          className="flex-1 bg-gradient-to-r from-green-500 to-emerald-500 text-white py-2 md:py-3 px-4 md:px-6 rounded-lg text-sm md:text-base font-semibold hover:from-green-600 hover:to-emerald-600 transition-all"
         >
           📤 공유하기
         </button>
         {result.imageUrl && (
           <button
             onClick={handleDownload}
-            className="flex-1 bg-gradient-to-r from-blue-500 to-indigo-500 text-white py-3 px-6 rounded-lg font-semibold hover:from-blue-600 hover:to-indigo-600 transition-all"
+            className="flex-1 bg-gradient-to-r from-blue-500 to-indigo-500 text-white py-2 md:py-3 px-4 md:px-6 rounded-lg text-sm md:text-base font-semibold hover:from-blue-600 hover:to-indigo-600 transition-all"
           >
             💾 다운로드
           </button>

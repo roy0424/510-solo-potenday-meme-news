@@ -57,16 +57,17 @@ export default function CrawlButton() {
       <button
         onClick={() => setShowCategoryMenu(!showCategoryMenu)}
         disabled={loading}
-        className="bg-gradient-to-r from-green-500 to-emerald-500 text-white px-6 py-3 rounded-lg font-semibold hover:from-green-600 hover:to-emerald-600 transition-all shadow-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+        className="bg-gradient-to-r from-green-500 to-emerald-500 text-white px-4 md:px-6 py-2 md:py-3 rounded-lg text-sm md:text-base font-semibold hover:from-green-600 hover:to-emerald-600 transition-all shadow-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 whitespace-nowrap"
       >
         {loading ? (
           <>
-            <div className="animate-spin rounded-full h-5 w-5 border-2 border-white border-t-transparent"></div>
-            크롤링 중...
+            <div className="animate-spin rounded-full h-4 w-4 md:h-5 md:w-5 border-2 border-white border-t-transparent"></div>
+            <span className="hidden md:inline">크롤링 중...</span>
+            <span className="md:hidden">크롤링...</span>
           </>
         ) : (
           <>
-            🔄 뉴스 크롤링
+            🔄 <span className="hidden md:inline">뉴스 크롤링</span><span className="md:hidden">크롤링</span>
           </>
         )}
       </button>
