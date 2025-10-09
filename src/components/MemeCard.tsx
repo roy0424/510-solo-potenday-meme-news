@@ -21,11 +21,16 @@ export default function MemeCard({ result }: MemeCardProps) {
 
   const generateRandomPositions = () => {
     if (result.gifUrls && result.gifUrls.length > 0) {
+      // Check if mobile or desktop
+      const isMobile = typeof window !== 'undefined' && window.innerWidth < 768
+      const minSize = isMobile ? 50 : 84
+      const maxSize = isMobile ? 90 : 140
+
       const positions = result.gifUrls.map((url, index) => ({
         url,
         top: Math.random() * 60 + 10, // 10-70%
         left: Math.random() * 60 + 10, // 10-70%
-        size: Math.random() * 56 + 84, // 84-140px (30% reduced from 120-200px)
+        size: Math.random() * (maxSize - minSize) + minSize,
         delay: index * 2, // Stagger animations
       }))
       setGifPositions(positions)
@@ -40,7 +45,16 @@ export default function MemeCard({ result }: MemeCardProps) {
       generateRandomPositions()
     }, 6000)
 
-    return () => clearInterval(interval)
+    // Regenerate on window resize
+    const handleResize = () => {
+      generateRandomPositions()
+    }
+    window.addEventListener('resize', handleResize)
+
+    return () => {
+      clearInterval(interval)
+      window.removeEventListener('resize', handleResize)
+    }
   }, [result.gifUrls])
   const handleShare = async () => {
     if (navigator.share) {
@@ -70,16 +84,16 @@ export default function MemeCard({ result }: MemeCardProps) {
   }
 
   return (
-    <div className="bg-white rounded-2xl shadow-2xl p-4 md:p-8 mt-4 md:mt-8 animate-fade-in">
+    <div className="bg-white rounded-2xl shadow-2xl p-6 md:p-10 mt-6 md:mt-10 animate-fade-in">
       {/* Summary - 상단에 크게 표시 */}
-      <div className="mb-4 md:mb-8 p-4 md:p-6 bg-gradient-to-r from-yellow-50 to-orange-50 rounded-xl border-l-4 border-orange-400">
-        <h3 className="text-xs md:text-sm font-semibold text-orange-600 mb-2 md:mb-3 uppercase tracking-wide">📰 뉴스 요약</h3>
-        <p className="text-base md:text-2xl font-bold text-gray-900 leading-relaxed">{result.summary}</p>
+      <div className="mb-6 md:mb-10 p-5 md:p-8 bg-gradient-to-r from-yellow-50 to-orange-50 rounded-xl border-l-4 border-orange-400">
+        <h3 className="text-sm md:text-base font-semibold text-orange-600 mb-3 md:mb-4 uppercase tracking-wide">📰 뉴스 요약</h3>
+        <p className="text-lg md:text-3xl font-bold text-gray-900 leading-relaxed">{result.summary}</p>
       </div>
 
       {/* AI Generated Image with GIF Overlays */}
       {result.imageUrl && (
-        <div className="mb-6 relative">
+        <div className="mb-6 md:mb-8 relative">
           <div className="relative w-full rounded-2xl overflow-hidden shadow-2xl">
             <Image
               src={result.imageUrl}
@@ -117,17 +131,17 @@ export default function MemeCard({ result }: MemeCardProps) {
       )}
 
       {/* Action Buttons */}
-      <div className="flex gap-2 md:gap-4">
+      <div className="flex gap-3 md:gap-5">
         <button
           onClick={handleShare}
-          className="flex-1 bg-gradient-to-r from-green-500 to-emerald-500 text-white py-2 md:py-3 px-4 md:px-6 rounded-lg text-sm md:text-base font-semibold hover:from-green-600 hover:to-emerald-600 transition-all"
+          className="flex-1 bg-gradient-to-r from-green-500 to-emerald-500 text-white py-3 md:py-4 px-5 md:px-8 rounded-lg text-base md:text-lg font-semibold hover:from-green-600 hover:to-emerald-600 transition-all"
         >
           📤 공유하기
         </button>
         {result.imageUrl && (
           <button
             onClick={handleDownload}
-            className="flex-1 bg-gradient-to-r from-blue-500 to-indigo-500 text-white py-2 md:py-3 px-4 md:px-6 rounded-lg text-sm md:text-base font-semibold hover:from-blue-600 hover:to-indigo-600 transition-all"
+            className="flex-1 bg-gradient-to-r from-blue-500 to-indigo-500 text-white py-3 md:py-4 px-5 md:px-8 rounded-lg text-base md:text-lg font-semibold hover:from-blue-600 hover:to-indigo-600 transition-all"
           >
             💾 다운로드
           </button>
