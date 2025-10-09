@@ -19,6 +19,14 @@ export default function NewsInput() {
     setResult(null)
 
     try {
+      // Validate Naver News URL format
+      if (inputMethod === 'url') {
+        const naverNewsPattern = /^https?:\/\/(n\.)?news\.naver\.com\//
+        if (!naverNewsPattern.test(newsUrl)) {
+          throw new Error('네이버 뉴스 URL만 입력 가능합니다. (예: https://news.naver.com/... 또는 https://n.news.naver.com/...)')
+        }
+      }
+
       const response = await fetch('/api/generate-meme', {
         method: 'POST',
         headers: {
