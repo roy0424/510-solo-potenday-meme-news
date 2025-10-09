@@ -101,7 +101,7 @@ export default function MemeFeed() {
           ))}
           <div className="text-center py-8 md:py-12">
             <p className="text-lg md:text-2xl text-gray-500 mb-3 md:mb-4">아직 밈이 없습니다</p>
-            <p className="text-sm md:text-base text-gray-400">위의 '뉴스 크롤링' 버튼을 눌러 뉴스를 크롤링하거나<br/>'밈 만들기' 버튼으로 직접 만들어보세요!</p>
+            <p className="text-sm md:text-base text-gray-400">'밈 만들기' 버튼을 눌러 첫 밈을 만들어보세요!</p>
           </div>
         </div>
       )}

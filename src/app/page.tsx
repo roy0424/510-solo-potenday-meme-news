@@ -1,5 +1,4 @@
 import MemeFeed from '@/components/MemeFeed'
-import CrawlButton from '@/components/CrawlButton'
 import Link from 'next/link'
 
 export default function Home() {
@@ -16,11 +15,10 @@ export default function Home() {
                 뉴스를 재미있는 밈으로
               </p>
             </div>
-            <div className="flex gap-2 md:gap-3">
-              <CrawlButton />
+            <div>
               <Link
                 href="/create"
-                className="bg-gradient-to-r from-purple-600 to-blue-600 text-white px-4 md:px-6 py-2 md:py-3 rounded-lg text-sm md:text-base font-semibold hover:from-purple-700 hover:to-blue-700 transition-all shadow-lg whitespace-nowrap"
+                className="bg-gradient-to-r from-purple-600 to-blue-600 text-white px-4 md:px-6 py-2 md:py-3 rounded-lg text-sm md:text-base font-semibold hover:from-purple-700 hover:to-blue-700 transition-all shadow-lg whitespace-nowrap inline-block"
               >
                 + 밈 만들기
               </Link>
